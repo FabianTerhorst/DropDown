@@ -38,10 +38,13 @@ internal extension UIView {
 internal extension UIWindow {
 	
 	static func visibleWindow() -> UIWindow? {
-		var currentWindow = UIApplication.shared.keyWindow
+		guard let application = UIApplication.value(forKeyPath: #keyPath(UIApplication.shared)) as? UIApplication else {
+			return nil
+		}
+		var currentWindow = application.keyWindow
 		
 		if currentWindow == nil {
-			let frontToBackWindows = Array(UIApplication.shared.windows.reversed()) 
+			let frontToBackWindows = Array(application.windows.reversed()) 
 			
 			for window in frontToBackWindows {
 				if window.windowLevel == UIWindow.Level.normal {
