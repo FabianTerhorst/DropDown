@@ -13,7 +13,10 @@ let package = Package(
         .target(
             name: "DropDown",
             dependencies: [],
-            path: "DropDown"
+            path: "DropDown",
+            resources: [
+                .process("resources/DropDownCell.xib")
+            ]
         )
     ]
 )
